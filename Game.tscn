@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Ball.svg" type="Texture" id=1]
+
+[sub_resource type="PhysicsMaterial" id=5]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 21, 10 )
+
+[sub_resource type="ProxyTexture" id=4]
+
+[sub_resource type="PhysicsMaterial" id=3]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="MAP" type="Node2D" parent="."]
+
+[node name="CEILING" type="StaticBody2D" parent="MAP"]
+position = Vector2( 0, -100 )
+scale = Vector2( 10, 1 )
+physics_material_override = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MAP/CEILING"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="MAP/CEILING"]
+position = Vector2( 0.25, -1.00001 )
+scale = Vector2( 42, 21 )
+texture = SubResource( 4 )
+
+[node name="FLOOR" type="StaticBody2D" parent="MAP"]
+position = Vector2( 0, 100 )
+scale = Vector2( 10, 1 )
+physics_material_override = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MAP/FLOOR"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="MAP/FLOOR"]
+position = Vector2( 0.25, -1.00001 )
+scale = Vector2( 42, 21 )
+texture = SubResource( 4 )
+
+[node name="LEFT" type="StaticBody2D" parent="MAP"]
+position = Vector2( 200, -100 )
+rotation = 1.5708
+scale = Vector2( 10, 1 )
+physics_material_override = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MAP/LEFT"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="MAP/LEFT"]
+position = Vector2( 0.25, -1.00001 )
+scale = Vector2( 42, 21 )
+texture = SubResource( 4 )
+
+[node name="RIGHT" type="StaticBody2D" parent="MAP"]
+position = Vector2( -200, -100 )
+rotation = 1.5708
+scale = Vector2( 10, 1 )
+physics_material_override = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MAP/RIGHT"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="MAP/RIGHT"]
+position = Vector2( 0.25, -1.00001 )
+scale = Vector2( 42, 21 )
+texture = SubResource( 4 )
+
+[node name="Ball" type="RigidBody2D" parent="."]
+physics_material_override = SubResource( 3 )
+can_sleep = false
+linear_velocity = Vector2( 15, 0 )
+linear_damp = 0.0
+angular_damp = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Ball"]
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 1 )
