@@ -21,4 +21,11 @@ func spawn(spawn_global_position):
 	var instance = ball_scene.instance()
 	instance.global_position = spawn_global_position
 	add_child(instance)
-	instance.get_node("Ball").linear_velocity = Vector2(rng.randf_range(-10.0, 10.0)*10, rng.randf_range(-10.0, 10.0)*10)
+	
+	var angle = (2 * PI * rng.randf_range(5, 60))/360
+	var force = rng.randf_range(90,150)
+	
+	if rng.randi() % 2 == 1:
+		instance.get_node("Ball").apply_central_impulse(Vector2(sin(angle) * force, cos(angle)*force))
+	else:
+		instance.get_node("Ball").apply_central_impulse(Vector2(sin(2*PI-angle) * force, cos(2*PI - angle)*force))
