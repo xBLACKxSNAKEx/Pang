@@ -10,10 +10,8 @@ func _ready():
 
 var i = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if OS.get_ticks_msec() - start_time > 2000 and d != 0:
-		split()
-	pass
+#func _process(delta):
+#	pass
 
 func split():
 	d-=1
