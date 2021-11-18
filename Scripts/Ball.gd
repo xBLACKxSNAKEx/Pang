@@ -14,5 +14,9 @@ func _process(delta):
 func split():
 	d-=1
 	var dup = duplicate()
+	
 	get_parent().add_child(dup)
+	apply_impulse(Vector2(0,0), Vector2(100, 0))
+	dup.apply_impulse(Vector2(0,0), Vector2(-100, 0))
+	dup.d = d
 	pass
