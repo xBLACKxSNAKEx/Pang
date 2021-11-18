@@ -2,6 +2,8 @@ extends RigidBody2D
 
 var d = 1
 
+onready var start_time = OS.get_ticks_msec()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -9,6 +11,8 @@ func _ready():
 var i = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if OS.get_ticks_msec() - start_time > 2000 and d != 0:
+		split()
 	pass
 
 func split():
