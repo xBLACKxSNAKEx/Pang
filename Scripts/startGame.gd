@@ -1,20 +1,24 @@
 extends Node2D
 
 export(PackedScene) var ball_scene = preload("res://Scenes/Ball.tscn")
+export(PackedScene) var player_scene = preload("res://Scenes/Player.tscn")
 
 var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
+	spawn_ball(Vector2(0,0))
+	var instance = player_scene.instance()
+	add_child(instance)
 	pass
 
-func _unhandled_input(event):
-	if event.is_echo():
-		return
-	if event is InputEventMouseButton and event.is_pressed():
-		if event.button_index == BUTTON_LEFT:
-			spawn_ball(get_global_mouse_position())
+#func _unhandled_input(event):
+#	if event.is_echo():
+#		return
+#	if event is InputEventMouseButton and event.is_pressed():
+#		if event.button_index == BUTTON_LEFT:
+#			spawn_ball(get_global_mouse_position())
 
 
 func spawn_ball(spawn_global_position):
