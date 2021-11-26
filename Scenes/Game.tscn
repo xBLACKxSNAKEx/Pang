@@ -22,6 +22,7 @@ script = ExtResource( 1 )
 [node name="CEILING" type="StaticBody2D" parent="MAP"]
 position = Vector2( 0, -100 )
 scale = Vector2( 10, 1 )
+collision_mask = 3
 physics_material_override = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MAP/CEILING"]
@@ -36,6 +37,7 @@ texture = SubResource( 4 )
 position = Vector2( -200, 0 )
 rotation = 1.5708
 scale = Vector2( 5, 1 )
+collision_mask = 3
 physics_material_override = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MAP/LEFT"]
@@ -49,6 +51,7 @@ texture = SubResource( 4 )
 [node name="FLOOR" type="StaticBody2D" parent="MAP"]
 position = Vector2( 0, 100 )
 scale = Vector2( 10, 1 )
+collision_mask = 3
 physics_material_override = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MAP/FLOOR"]
@@ -63,6 +66,7 @@ texture = SubResource( 4 )
 position = Vector2( 200, 0 )
 rotation = 1.5708
 scale = Vector2( 5, 1 )
+collision_mask = 3
 physics_material_override = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MAP/RIGHT"]
