@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var d = 1
+var d = 4
 
 onready var start_time = OS.get_ticks_msec()
 
@@ -19,12 +19,20 @@ func _physics_process(delta):
 		apply_central_impulse(-normalized*10)
 	pass
 
+func _on_Area2D_body_entered(body):
+	if body.get_collision_layer_bit(4):
+		if d == 0:
+			queue_free()
+		else:
+			split()
+	pass # Replace with function body.
+
 func split():
 	d-=1
 	var dup = duplicate()
-	
-	get_parent().add_child(dup)
+	dup.d = d
+	var Map_Object = get_parent()
+	Map_Object.add_child(dup)
 	apply_impulse(Vector2(0,0), Vector2(100, 0))
 	dup.apply_impulse(Vector2(0,0), Vector2(-100, 0))
-	dup.d = d
 	pass
