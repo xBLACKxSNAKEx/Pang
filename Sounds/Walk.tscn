@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Sounds/stoopki.wav" type="AudioStream" id=1]
+
+[node name="Walk" type="AudioStreamPlayer"]
+pause_mode = 2
+stream = ExtResource( 1 )
+mix_target = 2
+bus = "Player"

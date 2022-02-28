@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/baniek.wav-656eb5a0582d84ca37c152c513c644f3.sample"
+
+[deps]
+
+source_file="res://Sounds/baniek.wav"
+dest_files=[ "res://.import/baniek.wav-656eb5a0582d84ca37c152c513c644f3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

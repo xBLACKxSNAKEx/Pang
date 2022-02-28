@@ -1,0 +1,242 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Maps/background.png" type="Texture" id=1]
+[ext_resource path="res://AutoZoom.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Maps/SpawnPoint.gd" type="Script" id=3]
+[ext_resource path="res://img.png" type="Texture" id=4]
+
+[sub_resource type="PhysicsMaterial" id=2]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 527.5, 18 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 18, 335.5 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 68, 10 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 150, 10 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 600, 9 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="Sprite" type="Sprite" parent="SpawnPoints"]
+modulate = Color( 0.101961, 1, 0, 1 )
+position = Vector2( -382, 201 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+script = ExtResource( 3 )
+easy_Balls_Spawn = 2
+normal_Balls_Spawn = 3
+hell_Balls_Spawn = 4
+
+[node name="Sprite2" type="Sprite" parent="SpawnPoints"]
+modulate = Color( 0.101961, 1, 0, 1 )
+position = Vector2( 371, 201 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+script = ExtResource( 3 )
+easy_Balls_Spawn = 2
+normal_Balls_Spawn = 3
+hell_Balls_Spawn = 4
+
+[node name="Sprite3" type="Sprite" parent="SpawnPoints"]
+modulate = Color( 0.101961, 1, 0, 1 )
+position = Vector2( -15, 56 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+script = ExtResource( 3 )
+easy_Balls_Spawn = 2
+normal_Balls_Spawn = 3
+hell_Balls_Spawn = 4
+
+[node name="Sprite7" type="Sprite" parent="SpawnPoints"]
+modulate = Color( 1, 0.556863, 0, 1 )
+position = Vector2( -387, -125 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+script = ExtResource( 3 )
+normal_Balls_Spawn = 3
+hell_Balls_Spawn = 4
+
+[node name="Sprite8" type="Sprite" parent="SpawnPoints"]
+modulate = Color( 1, 0.556863, 0, 1 )
+position = Vector2( 215, 107 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+script = ExtResource( 3 )
+normal_Balls_Spawn = 3
+hell_Balls_Spawn = 4
+
+[node name="Sprite4" type="Sprite" parent="SpawnPoints"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( -163, -204 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+script = ExtResource( 3 )
+hell_Balls_Spawn = 4
+
+[node name="Sprite5" type="Sprite" parent="SpawnPoints"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( -254, 100 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+script = ExtResource( 3 )
+hell_Balls_Spawn = 4
+
+[node name="Sprite6" type="Sprite" parent="SpawnPoints"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 288, -173 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+script = ExtResource( 3 )
+hell_Balls_Spawn = 4
+
+[node name="Player" type="Sprite" parent="."]
+position = Vector2( 0, 268 )
+scale = Vector2( 0.25, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="Node" type="Node" parent="."]
+
+[node name="CEILING" type="StaticBody2D" parent="."]
+position = Vector2( 0, -298 )
+collision_mask = 3
+physics_material_override = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CEILING"]
+position = Vector2( -3.5, -1 )
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="CEILING"]
+position = Vector2( 0, -1 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1200, 36 )
+
+[node name="RIGHT" type="StaticBody2D" parent="."]
+position = Vector2( 505, 37 )
+collision_mask = 3
+physics_material_override = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RIGHT"]
+position = Vector2( 0, -35.5 )
+shape = SubResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="RIGHT"]
+position = Vector2( 72, 42 )
+texture = ExtResource( 1 )
+offset = Vector2( -71.75, -44 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 36, 800 )
+
+[node name="LEFT" type="StaticBody2D" parent="."]
+position = Vector2( -512, -5 )
+collision_mask = 3
+physics_material_override = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LEFT"]
+shape = SubResource( 6 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Sprite" type="Sprite" parent="LEFT"]
+position = Vector2( 72, 42 )
+texture = ExtResource( 1 )
+offset = Vector2( -71.75, -44 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 36, 800 )
+
+[node name="FLOOR" type="StaticBody2D" parent="."]
+position = Vector2( -26, 304 )
+collision_mask = 3
+physics_material_override = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FLOOR"]
+position = Vector2( 0, -3 )
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="FLOOR"]
+position = Vector2( -7, -3 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1200, 36 )
+
+[node name="PLATFORM_A" type="StaticBody2D" parent="."]
+position = Vector2( -216, 202 )
+collision_mask = 3
+physics_material_override = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLATFORM_A"]
+shape = SubResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="PLATFORM_A"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 134, 18 )
+
+[node name="PLATFORM_A2" type="StaticBody2D" parent="."]
+position = Vector2( 286, -104 )
+collision_mask = 3
+physics_material_override = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLATFORM_A2"]
+shape = SubResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="PLATFORM_A2"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 134, 18 )
+
+[node name="PLATFORM_B" type="StaticBody2D" parent="."]
+position = Vector2( -3, 118 )
+collision_mask = 3
+physics_material_override = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLATFORM_B"]
+shape = SubResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="PLATFORM_B"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 301, 18 )
+
+[node name="PLATFORM_B2" type="StaticBody2D" parent="."]
+position = Vector2( -168, -107 )
+collision_mask = 3
+physics_material_override = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLATFORM_B2"]
+shape = SubResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="PLATFORM_B2"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 301, 18 )
+
+[node name="PLATFORM_C" type="StaticBody2D" parent="."]
+position = Vector2( 0, 5 )
+collision_mask = 3
+physics_material_override = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLATFORM_C"]
+position = Vector2( 0, -1 )
+shape = SubResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="PLATFORM_C"]
+position = Vector2( 0, -1 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1200, 18 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 2 )
