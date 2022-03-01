@@ -4,6 +4,8 @@ export(PackedScene) var music = preload("res://Sounds/Music.tscn")
 export(PackedScene) var walk = preload("res://Sounds/Walk.tscn")
 
 # develop options
+var debug_map = 3;
+
 var mapCount = 5;
 
 var max_lifes = 6;

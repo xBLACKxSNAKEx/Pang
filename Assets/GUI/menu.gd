@@ -56,8 +56,8 @@ func _on_BackModeBtn_button_down():
 func _on_SelectDifficulty_button_down(difficultyLevel):
 	global.difficulty = difficultyLevel;
 	if Input.is_key_pressed(KEY_CONTROL):
-		global.map = 0;
-		get_tree().change_scene("res://Game.tscn");
+		global.map = global.debug_map;
+		_play();
 	else:
 		if(global.mode == 1):
 			var rng = RandomNumberGenerator.new()
@@ -90,10 +90,6 @@ func _on_BackBtn_button_down():
 	_select_menu(startMenuId);
 	pass
 
-func _play():
-	get_tree().change_scene("res://Game.tscn");
-	pass
-
 # Map2/3 menu
 func _on_BackMapBtn_button_down():
 	_select_menu(difficultyMenuId);
@@ -107,6 +103,11 @@ func _on_BackSavesBtn_button_down():
 # Options menu
 func _on_BackOptBtn_button_down():
 	_select_menu(startMenuId);
+	pass
+
+func _play():
+	get_tree().change_scene("res://Game.tscn");
+	global.score = 0
 	pass
 
 func _select_menu(id):

@@ -31,6 +31,9 @@ func set_Size():
 var s = 1
 
 func _physics_process(delta):
+	if OS.is_debug_build() and Input.is_key_pressed(KEY_Y):
+		gravity_scale = 0;
+		linear_velocity = Vector2(0,0);
 	if global.sizeUp > 0 or s != 1:
 		if global.sizeUp > 0:
 			s += delta * 0.5;
