@@ -22,8 +22,8 @@ _global_script_class_icons={
 
 config/name="Pang"
 run/main_scene="res://Start.tscn"
-config/icon="res://icon.png"
-config/windows_native_icon="res://icona.ico"
+config/icon="res://icona.ico"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 

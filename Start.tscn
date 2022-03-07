@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Assets/GUI/menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GUI/menu.png" type="Texture" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://Assets/GUI/mati-j-sign.png" type="Texture" id=30]
 [ext_resource path="res://Assets/GUI/godot-sign.png" type="Texture" id=31]
 [ext_resource path="res://Assets/GUI/mati-m-sign.png" type="Texture" id=32]
+[ext_resource path="res://Assets/GUI/button-delete.png" type="Texture" id=33]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -118,7 +119,6 @@ __meta__ = {
 position = Vector2( 512, 300 )
 z_index = -1
 frames = SubResource( 13 )
-frame = 10
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -130,15 +130,15 @@ z_index = 40
 texture = ExtResource( 30 )
 
 [node name="Godot-sign" type="Sprite" parent="."]
-position = Vector2( 985, 252 )
+position = Vector2( 985, 31 )
 texture = ExtResource( 31 )
 
 [node name="Damian-sign" type="Sprite" parent="."]
-position = Vector2( 239, 382 )
+position = Vector2( 110, 114 )
 texture = ExtResource( 29 )
 
 [node name="Mati-m-sign" type="Sprite" parent="."]
-position = Vector2( 103, 109 )
+position = Vector2( 76, 321 )
 texture = ExtResource( 32 )
 
 [node name="Menus" type="Node" parent="."]
@@ -448,7 +448,7 @@ margin_top = 8.00003
 margin_right = 462.0
 margin_bottom = 70.0
 rect_scale = Vector2( 0.667, 0.667 )
-texture_normal = ExtResource( 15 )
+texture_normal = ExtResource( 33 )
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
