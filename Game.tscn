@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Assets/startGame.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GUI/pauseMenu.gd" type="Script" id=2]
@@ -30,6 +30,8 @@
 [ext_resource path="res://Assets/GUI/music.png" type="Texture" id=28]
 [ext_resource path="res://Assets/GUI/OptionsMenu.gd" type="Script" id=29]
 [ext_resource path="res://Assets/GUI/options-menu.png" type="Texture" id=30]
+[ext_resource path="res://Assets/GUI/slider_tick.png" type="Texture" id=31]
+[ext_resource path="res://Assets/GUI/slider.png" type="Texture" id=32]
 
 [sub_resource type="GDScript" id=5]
 script/source = "extends Label
@@ -90,6 +92,16 @@ animations = [ {
 } ]
 
 [sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxTexture" id=15]
+texture = ExtResource( 32 )
+region_rect = Rect2( 0, 0, 360, 22 )
+margin_top = 22.0
+margin_bottom = 22.0
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=17]
 
 [node name="Node2D" type="Node2D"]
 
@@ -382,7 +394,7 @@ __meta__ = {
 position = Vector2( 512, 300 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 14 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Mode1" type="Control" parent="MAP/UI/WinMenu"]
@@ -596,7 +608,6 @@ __meta__ = {
 }
 
 [node name="OptionsMenu" type="Control" parent="MAP/UI"]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( -251, 201 )
@@ -639,28 +650,48 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 18 )
 
 [node name="Master" type="HSlider" parent="MAP/UI/OptionsMenu"]
-margin_left = -77.0
-margin_top = -54.0
-margin_right = 300.0
-margin_bottom = -38.0
-value = 20.0
+margin_left = -74.0
+margin_top = -64.0
+margin_right = 303.0
+margin_bottom = -34.0
+custom_icons/grabber_disabled = ExtResource( 31 )
+custom_icons/grabber_highlight = ExtResource( 31 )
+custom_icons/grabber = ExtResource( 31 )
+custom_styles/slider = SubResource( 15 )
+custom_styles/grabber_area_highlight = SubResource( 16 )
+custom_styles/grabber_area = SubResource( 17 )
+value = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Music" type="HSlider" parent="MAP/UI/OptionsMenu"]
-margin_left = -77.0
-margin_top = 4.0
-margin_right = 300.0
-margin_bottom = 20.0
-value = 20.0
+margin_left = -74.0
+margin_right = 303.0
+margin_bottom = 27.0
+custom_icons/grabber_disabled = ExtResource( 31 )
+custom_icons/grabber_highlight = ExtResource( 31 )
+custom_icons/grabber = ExtResource( 31 )
+custom_styles/slider = SubResource( 15 )
+custom_styles/grabber_area_highlight = SubResource( 16 )
+custom_styles/grabber_area = SubResource( 17 )
+value = 100.0
 
 [node name="Effects" type="HSlider" parent="MAP/UI/OptionsMenu"]
-margin_left = -77.0
-margin_top = 63.0
-margin_right = 300.0
-margin_bottom = 79.0
-value = 20.0
+margin_left = -74.0
+margin_top = 59.0
+margin_right = 303.0
+margin_bottom = 86.0
+custom_icons/grabber_disabled = ExtResource( 31 )
+custom_icons/grabber_highlight = ExtResource( 31 )
+custom_icons/grabber = ExtResource( 31 )
+custom_styles/slider = SubResource( 15 )
+custom_styles/grabber_area_highlight = SubResource( 16 )
+custom_styles/grabber_area = SubResource( 17 )
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PowerUps" type="Node" parent="MAP"]
 

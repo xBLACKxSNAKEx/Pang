@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://Assets/GUI/menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GUI/menu.png" type="Texture" id=2]
@@ -33,76 +33,88 @@
 [ext_resource path="res://Assets/GUI/godot-sign.png" type="Texture" id=31]
 [ext_resource path="res://Assets/GUI/mati-m-sign.png" type="Texture" id=32]
 [ext_resource path="res://Assets/GUI/button-delete.png" type="Texture" id=33]
+[ext_resource path="res://Assets/GUI/slider_tick.png" type="Texture" id=34]
+[ext_resource path="res://Assets/GUI/slider.png" type="Texture" id=35]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=16]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 1024, 600 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=17]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 1024, 0, 1024, 600 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 2048, 0, 1024, 600 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=19]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 3072, 0, 1024, 600 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=20]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 4096, 0, 1024, 600 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=21]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 5120, 0, 1024, 600 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=22]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 6144, 0, 1024, 600 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=23]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 7168, 0, 1024, 600 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=24]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 8192, 0, 1024, 600 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=25]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 9216, 0, 1024, 600 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=26]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 10240, 0, 1024, 600 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=27]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 11264, 0, 1024, 600 )
 
 [sub_resource type="SpriteFrames" id=13]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
 "loop": true,
 "name": "default",
 "speed": 12.0
 } ]
 
 [sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxTexture" id=28]
+texture = ExtResource( 35 )
+region_rect = Rect2( 0, 0, 360, 22 )
+margin_top = 22.0
+margin_bottom = 22.0
+
+[sub_resource type="StyleBoxEmpty" id=30]
+
+[sub_resource type="StyleBoxEmpty" id=29]
 
 [sub_resource type="StyleBoxEmpty" id=15]
 
@@ -146,6 +158,7 @@ texture = ExtResource( 32 )
 script = ExtResource( 1 )
 
 [node name="StartMenu" type="Control" parent="Menus"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -480,7 +493,6 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
 
 [node name="OptionsMenu" type="Control" parent="Menus"]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( -251, 201 )
@@ -524,10 +536,16 @@ texture = ExtResource( 14 )
 
 [node name="Master" type="HSlider" parent="Menus/OptionsMenu"]
 margin_left = 456.0
-margin_top = 248.0
+margin_top = 242.0
 margin_right = 833.0
-margin_bottom = 264.0
-value = 20.0
+margin_bottom = 272.0
+custom_icons/grabber_disabled = ExtResource( 34 )
+custom_icons/grabber_highlight = ExtResource( 34 )
+custom_icons/grabber = ExtResource( 34 )
+custom_styles/slider = SubResource( 28 )
+custom_styles/grabber_area_highlight = SubResource( 30 )
+custom_styles/grabber_area = SubResource( 29 )
+value = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -536,15 +554,30 @@ __meta__ = {
 margin_left = 456.0
 margin_top = 306.0
 margin_right = 833.0
-margin_bottom = 322.0
-value = 20.0
+margin_bottom = 333.0
+custom_icons/grabber_disabled = ExtResource( 34 )
+custom_icons/grabber_highlight = ExtResource( 34 )
+custom_icons/grabber = ExtResource( 34 )
+custom_styles/slider = SubResource( 28 )
+custom_styles/grabber_area_highlight = SubResource( 30 )
+custom_styles/grabber_area = SubResource( 29 )
+value = 100.0
 
 [node name="Effects" type="HSlider" parent="Menus/OptionsMenu"]
 margin_left = 456.0
 margin_top = 365.0
 margin_right = 833.0
-margin_bottom = 381.0
-value = 20.0
+margin_bottom = 392.0
+custom_icons/grabber_disabled = ExtResource( 34 )
+custom_icons/grabber_highlight = ExtResource( 34 )
+custom_icons/grabber = ExtResource( 34 )
+custom_styles/slider = SubResource( 28 )
+custom_styles/grabber_area_highlight = SubResource( 30 )
+custom_styles/grabber_area = SubResource( 29 )
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Difficulty" type="Control" parent="Menus"]
 visible = false
