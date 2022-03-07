@@ -7,11 +7,11 @@ func _ready():
 	pass
 
 func _process(delta):
-	if global.player.lifes_left != lifes:
+	if global.player.lifesLeft != lifes:
 		for i in range(0,6):
 			get_child(i).visible = false;
-		for i in range(0, global.player.lifes_left):
+		for i in range(0, global.player.lifesLeft):
 			if i <= get_child_count() and i >= 0:
 				get_child(i).visible = true;
-		lifes = global.player.lifes_left;
+		lifes = global.player.lifesLeft;
 	pass

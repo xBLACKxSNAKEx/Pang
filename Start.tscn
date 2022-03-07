@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Assets/GUI/menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GUI/menu.png" type="Texture" id=2]
@@ -12,9 +12,26 @@
 [ext_resource path="res://AutoZoom.gd" type="Script" id=10]
 [ext_resource path="res://Assets/GUI/button-load.png" type="Texture" id=11]
 [ext_resource path="res://Assets/GUI/button-random.png" type="Texture" id=12]
-[ext_resource path="res://BtnSelect.gd" type="Script" id=13]
+[ext_resource path="res://Assets/GUI/BtnSelect.gd" type="Script" id=13]
 [ext_resource path="res://Assets/GUI/arrow.png" type="Texture" id=14]
 [ext_resource path="res://Assets/GUI/button-select.png" type="Texture" id=15]
+[ext_resource path="res://Assets/GUI/MapBtn.gd" type="Script" id=16]
+[ext_resource path="res://Assets/GUI/music.png" type="Texture" id=17]
+[ext_resource path="res://Assets/GUI/effects.png" type="Texture" id=18]
+[ext_resource path="res://Assets/GUI/master.png" type="Texture" id=19]
+[ext_resource path="res://Assets/GUI/options-menu.png" type="Texture" id=20]
+[ext_resource path="res://Assets/GUI/button-leaderboard.png" type="Texture" id=21]
+[ext_resource path="res://Assets/GUI/Leaderboard.gd" type="Script" id=22]
+[ext_resource path="res://Assets/GUI/leaderboard-menu.png" type="Texture" id=23]
+[ext_resource path="res://Assets/GUI/button-endless.png" type="Texture" id=24]
+[ext_resource path="res://Assets/GUI/maps-menu.png" type="Texture" id=25]
+[ext_resource path="res://Assets/GUI/button-new-game.png" type="Texture" id=26]
+[ext_resource path="res://Assets/GUI/saves-menu.png" type="Texture" id=27]
+[ext_resource path="res://Assets/GUI/OptionsMenu.gd" type="Script" id=28]
+[ext_resource path="res://Assets/GUI/damian-sign.png" type="Texture" id=29]
+[ext_resource path="res://Assets/GUI/mati-j-sign.png" type="Texture" id=30]
+[ext_resource path="res://Assets/GUI/godot-sign.png" type="Texture" id=31]
+[ext_resource path="res://Assets/GUI/mati-m-sign.png" type="Texture" id=32]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -84,7 +101,12 @@ animations = [ {
 "speed": 12.0
 } ]
 
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
 [node name="Control" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -96,11 +118,28 @@ __meta__ = {
 position = Vector2( 512, 300 )
 z_index = -1
 frames = SubResource( 13 )
-frame = 8
+frame = 10
 playing = true
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Mati-j-sign" type="Sprite" parent="."]
+position = Vector2( 935, 458 )
+z_index = 40
+texture = ExtResource( 30 )
+
+[node name="Godot-sign" type="Sprite" parent="."]
+position = Vector2( 985, 252 )
+texture = ExtResource( 31 )
+
+[node name="Damian-sign" type="Sprite" parent="."]
+position = Vector2( 239, 382 )
+texture = ExtResource( 29 )
+
+[node name="Mati-m-sign" type="Sprite" parent="."]
+position = Vector2( 103, 109 )
+texture = ExtResource( 32 )
 
 [node name="Menus" type="Node" parent="."]
 script = ExtResource( 1 )
@@ -113,10 +152,10 @@ __meta__ = {
 }
 
 [node name="StartBtn" type="TextureButton" parent="Menus/StartMenu"]
-margin_left = 36.0
-margin_top = 392.0
-margin_right = 228.0
-margin_bottom = 454.0
+margin_left = 416.0
+margin_top = 281.0
+margin_right = 608.0
+margin_bottom = 343.0
 texture_normal = ExtResource( 3 )
 script = ExtResource( 13 )
 __meta__ = {
@@ -129,10 +168,10 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
 
 [node name="OptionsBtn" type="TextureButton" parent="Menus/StartMenu"]
-margin_left = 298.0
-margin_top = 392.0
-margin_right = 488.0
-margin_bottom = 454.0
+margin_left = 417.0
+margin_top = 354.0
+margin_right = 607.0
+margin_bottom = 416.0
 texture_normal = ExtResource( 5 )
 script = ExtResource( 13 )
 __meta__ = {
@@ -145,11 +184,11 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
 
 [node name="LeaderboardBtn2" type="TextureButton" parent="Menus/StartMenu"]
-margin_left = 536.0
-margin_top = 392.0
-margin_right = 726.0
-margin_bottom = 454.0
-texture_normal = ExtResource( 5 )
+margin_left = 322.0
+margin_top = 425.0
+margin_right = 702.0
+margin_bottom = 487.0
+texture_normal = ExtResource( 21 )
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -161,10 +200,10 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
 
 [node name="ExitBtn" type="TextureButton" parent="Menus/StartMenu"]
-margin_left = 797.0
-margin_top = 394.0
-margin_right = 989.0
-margin_bottom = 456.0
+margin_left = 416.0
+margin_top = 499.0
+margin_right = 608.0
+margin_bottom = 561.0
 texture_normal = ExtResource( 4 )
 script = ExtResource( 13 )
 __meta__ = {
@@ -185,11 +224,11 @@ __meta__ = {
 }
 
 [node name="NewGameBtn" type="TextureButton" parent="Menus/PlayMenu"]
-margin_left = 227.0
+margin_left = 208.0
 margin_top = 393.0
-margin_right = 417.0
+margin_right = 468.0
 margin_bottom = 455.0
-texture_normal = ExtResource( 11 )
+texture_normal = ExtResource( 26 )
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -258,7 +297,6 @@ margin_left = 417.0
 margin_top = 393.0
 margin_right = 527.0
 margin_bottom = 424.0
-disabled = true
 texture_normal = ExtResource( 15 )
 script = ExtResource( 13 )
 __meta__ = {
@@ -271,12 +309,12 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
 
 [node name="EndlessBtn" type="TextureButton" parent="Menus/GamemodeMenu"]
+visible = false
 margin_left = 702.0
 margin_top = 393.0
 margin_right = 892.0
 margin_bottom = 455.0
-disabled = true
-texture_normal = ExtResource( 11 )
+texture_normal = ExtResource( 24 )
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -311,6 +349,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Maps-menu" type="Sprite" parent="Menus/MapMenuMode2"]
+position = Vector2( 512, 260 )
+texture = ExtResource( 25 )
+
+[node name="ItemList" type="ItemList" parent="Menus/MapMenuMode2"]
+margin_left = 191.0
+margin_top = 169.0
+margin_right = 834.0
+margin_bottom = 418.0
+custom_styles/bg = SubResource( 14 )
+allow_reselect = true
+max_columns = 2
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2( 300, 168.75 )
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+mapsVisible = 15
+
 [node name="BackMap2Btn" type="TextureButton" parent="Menus/MapMenuMode2"]
 margin_left = 417.0
 margin_top = 485.0
@@ -321,6 +380,7 @@ script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+hideNeighbours = false
 
 [node name="Arrow" type="Sprite" parent="Menus/MapMenuMode2/BackMap2Btn"]
 position = Vector2( -18, 30 )
@@ -335,18 +395,85 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackSavesBtn" type="TextureButton" parent="Menus/SavesMenu"]
-margin_left = 417.0
-margin_top = 485.0
-margin_right = 607.0
-margin_bottom = 547.0
+[node name="Maps-menu" type="Sprite" parent="Menus/SavesMenu"]
+position = Vector2( 510, 322 )
+texture = ExtResource( 27 )
+
+[node name="ItemList" type="ItemList" parent="Menus/SavesMenu"]
+margin_left = 219.0
+margin_top = 147.0
+margin_right = 806.0
+margin_bottom = 422.0
+custom_constants/vseparation = 15
+custom_constants/hseparation = 20
+custom_styles/bg = SubResource( 14 )
+allow_reselect = true
+max_columns = 4
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2( 300, 168.75 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="Control" parent="Menus/SavesMenu"]
+margin_left = 201.0
+margin_top = 443.0
+margin_right = 808.0
+margin_bottom = 502.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectBtn" type="TextureButton" parent="Menus/SavesMenu/Buttons"]
+margin_left = 42.0
+margin_top = 8.00003
+margin_right = 262.0
+margin_bottom = 70.0
+rect_scale = Vector2( 0.667, 0.667 )
+texture_normal = ExtResource( 15 )
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Sprite" parent="Menus/SavesMenu/Buttons/SelectBtn"]
+position = Vector2( -18, 30 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 14 )
+
+[node name="DeleteBtn" type="TextureButton" parent="Menus/SavesMenu/Buttons"]
+margin_left = 242.0
+margin_top = 8.00003
+margin_right = 462.0
+margin_bottom = 70.0
+rect_scale = Vector2( 0.667, 0.667 )
+texture_normal = ExtResource( 15 )
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="Sprite" parent="Menus/SavesMenu/Buttons/DeleteBtn"]
+position = Vector2( -18, 30 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 14 )
+
+[node name="BackSavesBtn" type="TextureButton" parent="Menus/SavesMenu/Buttons"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 471.0
+margin_top = 8.00003
+margin_right = 54.0
+margin_bottom = 11.0
+rect_scale = Vector2( 0.667, 0.667 )
 texture_normal = ExtResource( 7 )
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Arrow" type="Sprite" parent="Menus/SavesMenu/BackSavesBtn"]
+[node name="Arrow" type="Sprite" parent="Menus/SavesMenu/Buttons/BackSavesBtn"]
 position = Vector2( -18, 30 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
@@ -355,25 +482,68 @@ texture = ExtResource( 14 )
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
+rect_pivot_offset = Vector2( -251, 201 )
+script = ExtResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Options-menu" type="Sprite" parent="Menus/OptionsMenu"]
+position = Vector2( 535, 305 )
+texture = ExtResource( 20 )
+
+[node name="Label-Master" type="Sprite" parent="Menus/OptionsMenu"]
+position = Vector2( 328, 257 )
+texture = ExtResource( 19 )
+
+[node name="Label-Effects" type="Sprite" parent="Menus/OptionsMenu"]
+position = Vector2( 328, 370 )
+texture = ExtResource( 18 )
+
+[node name="Label-Music" type="Sprite" parent="Menus/OptionsMenu"]
+position = Vector2( 328, 314 )
+texture = ExtResource( 17 )
+
 [node name="BackOptBtn" type="TextureButton" parent="Menus/OptionsMenu"]
 margin_left = 417.0
-margin_top = 485.0
+margin_top = 412.0
 margin_right = 607.0
-margin_bottom = 547.0
+margin_bottom = 474.0
 texture_normal = ExtResource( 7 )
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+hideNeighbours = false
 
 [node name="Arrow" type="Sprite" parent="Menus/OptionsMenu/BackOptBtn"]
 position = Vector2( -18, 30 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
+
+[node name="Master" type="HSlider" parent="Menus/OptionsMenu"]
+margin_left = 456.0
+margin_top = 248.0
+margin_right = 833.0
+margin_bottom = 264.0
+value = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="HSlider" parent="Menus/OptionsMenu"]
+margin_left = 456.0
+margin_top = 306.0
+margin_right = 833.0
+margin_bottom = 322.0
+value = 20.0
+
+[node name="Effects" type="HSlider" parent="Menus/OptionsMenu"]
+margin_left = 456.0
+margin_top = 365.0
+margin_right = 833.0
+margin_bottom = 381.0
+value = 20.0
 
 [node name="Difficulty" type="Control" parent="Menus"]
 visible = false
@@ -455,7 +625,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackMap3Btn" type="TextureButton" parent="Menus/MapMenuMode3"]
+[node name="Maps-menu" type="Sprite" parent="Menus/MapMenuMode3"]
+position = Vector2( 512, 260 )
+texture = ExtResource( 25 )
+
+[node name="ItemList" type="ItemList" parent="Menus/MapMenuMode3"]
+margin_left = 191.0
+margin_top = 169.0
+margin_right = 834.0
+margin_bottom = 418.0
+custom_styles/bg = SubResource( 14 )
+allow_reselect = true
+max_columns = 2
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2( 300, 168.75 )
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+basePath = "//Assets/Maps/Stage3/ss/Map"
+mapsVisible = 0
+
+[node name="BackMap2Btn" type="TextureButton" parent="Menus/MapMenuMode3"]
 margin_left = 417.0
 margin_top = 485.0
 margin_right = 607.0
@@ -465,29 +657,79 @@ script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+hideNeighbours = false
 
-[node name="Arrow" type="Sprite" parent="Menus/MapMenuMode3/BackMap3Btn"]
+[node name="Arrow" type="Sprite" parent="Menus/MapMenuMode3/BackMap2Btn"]
 position = Vector2( -18, 30 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
+
+[node name="Leaderboard" type="Control" parent="Menus"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Leaderboard-menu" type="Sprite" parent="Menus/Leaderboard"]
+position = Vector2( 512, 321 )
+texture = ExtResource( 23 )
+
+[node name="BackDiffBtn" type="TextureButton" parent="Menus/Leaderboard"]
+margin_left = 417.0
+margin_top = 485.0
+margin_right = 607.0
+margin_bottom = 547.0
+texture_normal = ExtResource( 7 )
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+hideNeighbours = false
+
+[node name="Arrow" type="Sprite" parent="Menus/Leaderboard/BackDiffBtn"]
+position = Vector2( -18, 30 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 14 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Menus/Leaderboard"]
+margin_left = 251.0
+margin_top = 233.0
+margin_right = 783.0
+margin_bottom = 462.0
+custom_styles/bg = SubResource( 15 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menus/Leaderboard/ScrollContainer"]
+rect_pivot_offset = Vector2( 250, 112 )
+custom_constants/separation = 58
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 512, 300 )
 current = true
 script = ExtResource( 10 )
 
-[connection signal="button_down" from="Menus/StartMenu/StartBtn" to="Menus" method="_on_Start_button_down"]
+[connection signal="button_down" from="Menus/StartMenu/StartBtn" to="Menus" method="_select_menu" binds= [ 2 ]]
 [connection signal="mouse_entered" from="Menus/StartMenu/StartBtn" to="Menus/StartMenu/StartBtn" method="_on_mouse_entered"]
-[connection signal="button_down" from="Menus/StartMenu/OptionsBtn" to="Menus" method="_on_Options_button_down"]
+[connection signal="button_down" from="Menus/StartMenu/OptionsBtn" to="Menus" method="_select_menu" binds= [ 5 ]]
 [connection signal="mouse_entered" from="Menus/StartMenu/OptionsBtn" to="Menus/StartMenu/OptionsBtn" method="_on_mouse_entered"]
+[connection signal="button_down" from="Menus/StartMenu/LeaderboardBtn2" to="Menus" method="_select_menu" binds= [ 8 ]]
 [connection signal="mouse_entered" from="Menus/StartMenu/LeaderboardBtn2" to="Menus/StartMenu/LeaderboardBtn2" method="_on_mouse_entered"]
 [connection signal="button_down" from="Menus/StartMenu/ExitBtn" to="Menus" method="_on_ExitBtn_button_down"]
 [connection signal="mouse_entered" from="Menus/StartMenu/ExitBtn" to="Menus/StartMenu/ExitBtn" method="_on_mouse_entered"]
 [connection signal="button_down" from="Menus/PlayMenu/NewGameBtn" to="Menus" method="_on_NewGameBtn_button_down"]
 [connection signal="mouse_entered" from="Menus/PlayMenu/NewGameBtn" to="Menus/PlayMenu/NewGameBtn" method="_on_mouse_entered"]
-[connection signal="button_down" from="Menus/PlayMenu/LoadBtn" to="Menus" method="_on_LoadGameBtn_button_down"]
+[connection signal="button_down" from="Menus/PlayMenu/LoadBtn" to="Menus" method="_select_menu" binds= [ 4 ]]
 [connection signal="mouse_entered" from="Menus/PlayMenu/LoadBtn" to="Menus/PlayMenu/LoadBtn" method="_on_mouse_entered"]
-[connection signal="button_down" from="Menus/PlayMenu/BackPlayBtn" to="Menus" method="_on_BackBtn_button_down"]
+[connection signal="button_down" from="Menus/PlayMenu/BackPlayBtn" to="Menus" method="_select_menu" binds= [ 2 ]]
 [connection signal="mouse_entered" from="Menus/PlayMenu/BackPlayBtn" to="Menus/PlayMenu/BackPlayBtn" method="_on_mouse_entered"]
 [connection signal="button_down" from="Menus/GamemodeMenu/RandomBtn" to="Menus" method="_on_SelectMode_button_down" binds= [ 1 ]]
 [connection signal="mouse_entered" from="Menus/GamemodeMenu/RandomBtn" to="Menus/GamemodeMenu/RandomBtn" method="_on_mouse_entered"]
@@ -495,21 +737,33 @@ script = ExtResource( 10 )
 [connection signal="mouse_entered" from="Menus/GamemodeMenu/SelectBtn" to="Menus/GamemodeMenu/SelectBtn" method="_on_mouse_entered"]
 [connection signal="button_down" from="Menus/GamemodeMenu/EndlessBtn" to="Menus" method="_on_SelectMode_button_down" binds= [ 3 ]]
 [connection signal="mouse_entered" from="Menus/GamemodeMenu/EndlessBtn" to="Menus/GamemodeMenu/EndlessBtn" method="_on_mouse_entered"]
-[connection signal="button_down" from="Menus/GamemodeMenu/BackModeBtn" to="Menus" method="_on_BackModeBtn_button_down"]
+[connection signal="button_down" from="Menus/GamemodeMenu/BackModeBtn" to="Menus" method="_select_menu" binds= [ 0 ]]
 [connection signal="mouse_entered" from="Menus/GamemodeMenu/BackModeBtn" to="Menus/GamemodeMenu/BackModeBtn" method="_on_mouse_entered"]
-[connection signal="button_down" from="Menus/MapMenuMode2/BackMap2Btn" to="Menus" method="_on_BackMapBtn_button_down"]
+[connection signal="button_down" from="Menus/MapMenuMode2/BackMap2Btn" to="Menus" method="_select_menu" binds= [ 1 ]]
 [connection signal="mouse_entered" from="Menus/MapMenuMode2/BackMap2Btn" to="Menus/MapMenuMode2/BackMap2Btn" method="_on_mouse_entered"]
-[connection signal="button_down" from="Menus/SavesMenu/BackSavesBtn" to="Menus" method="_on_BackSavesBtn_button_down"]
-[connection signal="mouse_entered" from="Menus/SavesMenu/BackSavesBtn" to="Menus/SavesMenu/BackSavesBtn" method="_on_mouse_entered"]
-[connection signal="button_down" from="Menus/OptionsMenu/BackOptBtn" to="Menus" method="_on_BackOptBtn_button_down"]
+[connection signal="mouse_exited" from="Menus/MapMenuMode2/BackMap2Btn" to="Menus/MapMenuMode2/BackMap2Btn" method="_on_mouse_exited"]
+[connection signal="item_activated" from="Menus/SavesMenu/ItemList" to="Menus" method="_on_ItemList_item_activated"]
+[connection signal="button_down" from="Menus/SavesMenu/Buttons/SelectBtn" to="Menus" method="select_save"]
+[connection signal="mouse_entered" from="Menus/SavesMenu/Buttons/SelectBtn" to="Menus/SavesMenu/Buttons/SelectBtn" method="_on_mouse_entered"]
+[connection signal="button_down" from="Menus/SavesMenu/Buttons/DeleteBtn" to="Menus" method="del_save"]
+[connection signal="mouse_entered" from="Menus/SavesMenu/Buttons/DeleteBtn" to="Menus/SavesMenu/Buttons/DeleteBtn" method="_on_mouse_entered"]
+[connection signal="button_down" from="Menus/SavesMenu/Buttons/BackSavesBtn" to="Menus" method="_select_menu" binds= [ 1 ]]
+[connection signal="mouse_entered" from="Menus/SavesMenu/Buttons/BackSavesBtn" to="Menus/SavesMenu/Buttons/BackSavesBtn" method="_on_mouse_entered"]
+[connection signal="button_down" from="Menus/OptionsMenu/BackOptBtn" to="Menus" method="_select_menu" binds= [ 0 ]]
 [connection signal="mouse_entered" from="Menus/OptionsMenu/BackOptBtn" to="Menus/OptionsMenu/BackOptBtn" method="_on_mouse_entered"]
+[connection signal="value_changed" from="Menus/OptionsMenu/Master" to="Menus/OptionsMenu" method="_on_Master_value_changed"]
+[connection signal="value_changed" from="Menus/OptionsMenu/Music" to="Menus/OptionsMenu" method="_on_Music_value_changed"]
+[connection signal="value_changed" from="Menus/OptionsMenu/Effects" to="Menus/OptionsMenu" method="_on_Effects_value_changed"]
 [connection signal="button_down" from="Menus/Difficulty/EasyBtn" to="Menus" method="_on_SelectDifficulty_button_down" binds= [ 0 ]]
 [connection signal="mouse_entered" from="Menus/Difficulty/EasyBtn" to="Menus/Difficulty/EasyBtn" method="_on_mouse_entered"]
 [connection signal="button_down" from="Menus/Difficulty/MediumBtn" to="Menus" method="_on_SelectDifficulty_button_down" binds= [ 1 ]]
 [connection signal="mouse_entered" from="Menus/Difficulty/MediumBtn" to="Menus/Difficulty/MediumBtn" method="_on_mouse_entered"]
 [connection signal="button_down" from="Menus/Difficulty/HardBtn" to="Menus" method="_on_SelectDifficulty_button_down" binds= [ 2 ]]
 [connection signal="mouse_entered" from="Menus/Difficulty/HardBtn" to="Menus/Difficulty/HardBtn" method="_on_mouse_entered"]
-[connection signal="button_down" from="Menus/Difficulty/BackDiffBtn" to="Menus" method="_on_BackDiffBtn_button_down"]
+[connection signal="button_down" from="Menus/Difficulty/BackDiffBtn" to="Menus" method="_select_menu" binds= [ 2 ]]
 [connection signal="mouse_entered" from="Menus/Difficulty/BackDiffBtn" to="Menus/Difficulty/BackDiffBtn" method="_on_mouse_entered"]
-[connection signal="button_down" from="Menus/MapMenuMode3/BackMap3Btn" to="Menus" method="_on_BackMapBtn_button_down"]
-[connection signal="mouse_entered" from="Menus/MapMenuMode3/BackMap3Btn" to="Menus/MapMenuMode3/BackMap3Btn" method="_on_mouse_entered"]
+[connection signal="button_down" from="Menus/MapMenuMode3/BackMap2Btn" to="Menus" method="_select_menu" binds= [ 1 ]]
+[connection signal="mouse_entered" from="Menus/MapMenuMode3/BackMap2Btn" to="Menus/MapMenuMode3/BackMap2Btn" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Menus/MapMenuMode3/BackMap2Btn" to="Menus/MapMenuMode3/BackMap2Btn" method="_on_mouse_exited"]
+[connection signal="button_down" from="Menus/Leaderboard/BackDiffBtn" to="Menus" method="_select_menu" binds= [ 0 ]]
+[connection signal="mouse_entered" from="Menus/Leaderboard/BackDiffBtn" to="Menus/Leaderboard/BackDiffBtn" method="_on_mouse_entered"]

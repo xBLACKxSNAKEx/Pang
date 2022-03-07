@@ -1,86 +1,116 @@
 extends Node2D
 
-export(PackedScene) var ball_scene = preload("res://Assets/Ball/Scenes/Ball.tscn")
-export(PackedScene) var player_scene = preload("res://Assets/Player/Scenes/Player.tscn")
+export(PackedScene) var ballScene = preload("res://Assets/Ball/Ball.tscn")
+export(PackedScene) var playerScene = preload("res://Assets/Player/Player.tscn")
 
 var rng = RandomNumberGenerator.new();
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if global.save != "":
+		if global.ballsList.size() <= 0:
+			global.map +=1;
+			if global.map > global.mapCountPerDifficulty:
+				global.map = 1;
+				global.difficulty += 1;
+			global.save = "";
 	var mapPath = "res://Assets/Maps/Map" + String(global.map) + ".tscn"
-	var next_level_resource = load(mapPath)
+	if global.mode == 3:
+		mapPath = "res://Assets/Maps/Stage3/Map" + String(global.map) + ".tscn"
+	var nextLevelResource = load(mapPath)
 	rng.randomize();
-	var next_level = next_level_resource.instance()
-	add_child(next_level)
-	var player = player_scene.instance()
+	var nextLevel = nextLevelResource.instance()
+	add_child(nextLevel)
+	var player = playerScene.instance()
 	add_child(player)
 	global.player = player;
 	if global.save == "":
+		global.ballsList.clear();
 		spawn_balls()
 		player.global_position = get_node("Node2D/Player").global_position
 	else:
-		player.global_position.x = global.player_pos_x;
-		player.global_position.y = global.player_pos_y;
-		player.lifes_left = global.player_lifes;
-		for spawn in get_child(2).get_node("SpawnPoints").get_children():
+		if global.playerPosX == null:
+			player.global_position = get_node("Node2D/Player").global_position
+		else:
+			player.global_position.x = global.playerPosX;
+			player.global_position.y = global.playerPosY;
+		if global.playerLifes != null:
+			player.lifesLeft = global.playerLifes;
+		for spawn in get_child(3).get_node("SpawnPoints").get_children():
 			spawn.visible = false
 		for i in global.ballsList.size():
-			var b = spawn_ball(Vector2(global.ballsList[0].posx, global.ballsList[0].posy), global.ballsList[0].size, 0, 0);
-			b.linear_velocity.x = global.ballsList[0].velx;
-			b.linear_velocity.y = global.ballsList[0].vely;
+			var b = spawn_ball(Vector2(global.ballsList[0].posX, global.ballsList[0].posY), global.ballsList[0].size, 0, 0);
+			b.linear_velocity.x = global.ballsList[0].velX;
+			b.linear_velocity.y = global.ballsList[0].velY;
 			global.ballsList.pop_front();
 			global.ballsList.push_back(b);
+		var powerUpResource = "res://Assets/PowerUps/PowerUp.tscn";
+		var powerUpLoad = load(powerUpResource)
+		for i in global.powerUps.size():
+			var powerUp = powerUpLoad.instance()
+			powerUp.global_position.x = global.powerUps[i].posX;
+			powerUp.global_position.y = global.powerUps[i].posY;
+			powerUp.setType(global.powerUps[i].type);
+			get_node("/root/Node2D/MAP/PowerUps").add_child(powerUp)
+			global.save = "";
 	get_node("Node2D/Player").visible = false
+	if global.mode == 2:
+		get_node("UI/Game_Mode/Level").visible = true;
+		get_node("UI/Game_Mode/Level").text = "Level " + str(global.map + (global.mapCountPerDifficulty * global.difficulty));
+	else:
+		get_node("UI/Game_Mode/Level").visible = false;
+	Engine.time_scale = 1;
+	get_tree().paused = false;
 	pass
 
 func spawn_balls():
-	for spawn in get_child(2).get_node("SpawnPoints").get_children():
+	for spawn in get_child(3).get_node("SpawnPoints").get_children():
 		spawn.visible = false
-		var easy = spawn.easy_Balls_Spawn;
-		var normal = spawn.normal_Balls_Spawn;
-		var hard = spawn.hell_Balls_Spawn;
-		var random_velocity = spawn.random_velocity;
-		var random_angle = spawn.random_angle;
-		var init_vel
-		var init_angle
-		if random_velocity == false:
-			init_vel = spawn.init_vel;
+		var easy = spawn.easyBallsSpawn;
+		var normal = spawn.normalBalls_Spawn;
+		var hard = spawn.hardBalls_Spawn;
+		var randomVelocity = spawn.randomVelocity;
+		var randomAngle = spawn.randomAngle;
+		var initVel
+		var initAngle
+		if randomVelocity == false:
+			initVel = spawn.initVel;
 		else:
-			init_vel = -1;
+			initVel = -1;
 			
-		if random_angle == false:
-			init_angle = spawn.init_angle;
+		if randomAngle == false:
+			initAngle = spawn.initAngle;
 		else:
-			init_angle = -1;
+			initAngle = -1;
 		
 		if global.difficulty == global.Difficulty.Easy:
 			if easy > 0:
-				global.ballsList.push_back(spawn_ball(spawn.global_position, easy, init_vel, init_angle));
+				global.ballsList.push_back(spawn_ball(spawn.global_position, easy, initVel, initAngle));
 		elif global.difficulty == global.Difficulty.Normal:
 			if normal > 0:
-				global.ballsList.push_back(spawn_ball(spawn.global_position, normal, init_vel, init_angle));
+				global.ballsList.push_back(spawn_ball(spawn.global_position, normal, initVel, initAngle));
 		elif global.difficulty == global.Difficulty.Hard:
 			if hard > 0:
-				global.ballsList.push_back(spawn_ball(spawn.global_position, hard, init_vel, init_angle));
+				global.ballsList.push_back(spawn_ball(spawn.global_position, hard, initVel, initAngle));
 	pass
 
-func spawn_ball(spawn_global_position, d, init_vel, init_angle):
-	var instance = ball_scene.instance()
+func spawn_ball(spawn_global_position, d, initVel, initAngle):
+	var instance = ballScene.instance()
 	instance.global_position = spawn_global_position
 	add_child(instance)
 	instance.d = d;
 	var angle
 	var force
 	
-	if init_angle < 0:
+	if initAngle < 0:
 		angle = (2 * PI * rng.randf_range(5, 60))/360
 	else:
-		angle = (2 * PI * init_angle)/360;
+		angle = (2 * PI * initAngle)/360;
 	
-	if init_vel < 0:
+	if initVel < 0:
 		force = rng.randf_range(90,150)
 	else:
-		force = init_vel;
+		force = initVel;
 	
 	if rng.randi() % 2 == 1:
 		instance.apply_central_impulse(Vector2(sin(angle) * force, cos(angle)*force));

@@ -8,12 +8,16 @@ var savesMenuId = 4;
 var optionsMenuId = 5;
 var difficultyMenuId = 6;
 var mapMenu3Id = 7;
+var leaderboardMenuId = 8;
 
 var activeMenuId;
 
 func _ready():
-	# TODO: check stage1&2 maps and create buttons for them
-	# TODO: check stage3 maps and create buttons for them
+	global.scan_saves();
+	global.ballsList.clear();
+	global.powerUps.clear();
+	Engine.time_scale = 1;
+	get_tree().paused = false;
 	_select_menu(startMenuId);
 	pass
 
@@ -27,14 +31,6 @@ func _input(event):
 	pass
 
 # Start menu
-func _on_Start_button_down():
-	_select_menu(gamemodeMenuId);
-	pass
-
-func _on_Options_button_down():
-	_select_menu(optionsMenuId);
-	pass
-
 func _on_ExitBtn_button_down():
 	get_tree().quit();
 	pass
@@ -48,67 +44,41 @@ func _on_SelectMode_button_down(mode):
 		_select_menu(playMenuId);
 	pass
 
-func _on_BackModeBtn_button_down():
-	_select_menu(startMenuId);
-	pass
-
 # Difficulty menu
 func _on_SelectDifficulty_button_down(difficultyLevel):
 	global.difficulty = difficultyLevel;
-	if Input.is_key_pressed(KEY_CONTROL):
-		global.map = global.debug_map;
-		_play();
+	if Input.is_key_pressed(KEY_CONTROL) and OS.is_debug_build():
+		global.map = global.debugMap;
 	else:
-		if(global.mode == 1):
-			var rng = RandomNumberGenerator.new()
-			rng.randomize()
-			if global.mapCount == 1:
-				global.map = 1
-			else:
-				global.map = 1 + (rng.randi() % (global.mapCount - 1));
-			_play();
-		else:
-			_select_menu(mapMenu2Id);
-	pass
-
-func _on_BackDiffBtn_button_down():
-	_select_menu(gamemodeMenuId);
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
+		global.map = rng.randi_range(1, 5);
+	global.play();
 	pass
 
 # Play menu
 func _on_NewGameBtn_button_down():
-	_select_menu(gamemodeMenuId);
+	if global.mode == 2:
+		_select_menu(mapMenu2Id);
+	else:
+		_select_menu(mapMenu3Id);
 	pass
 
-func _on_LoadGameBtn_button_down():
-	global.load();
-	_play();
-	#_select_menu(savesMenuId);
+func select_save():
+	if get_node("SavesMenu/ItemList").is_anything_selected():
+		global.load(get_node("SavesMenu/ItemList").get_item_text(get_node("SavesMenu/ItemList").get_selected_items()[0]));
+	global.play();
 	pass
 
-func _on_BackBtn_button_down():
-	_select_menu(startMenuId);
+func _on_ItemList_item_activated(index):
+	global.load(get_node("SavesMenu/ItemList").get_item_text(index))
+	global.play();
 	pass
 
-# Map2/3 menu
-func _on_BackMapBtn_button_down():
-	_select_menu(difficultyMenuId);
-	pass
-
-# Saves menu
-func _on_BackSavesBtn_button_down():
-	_select_menu(playMenuId);
-	pass
-
-# Options menu
-func _on_BackOptBtn_button_down():
-	_select_menu(startMenuId);
-	pass
-
-func _play():
-	get_tree().change_scene("res://Game.tscn");
-	global.score = 0
-	pass
+func del_save():
+	if get_node("SavesMenu/ItemList").is_anything_selected():
+		global.del_save(get_node("SavesMenu/ItemList").get_item_text(get_node("SavesMenu/ItemList").get_selected_items()[0]));
+		global.scan_saves();
 
 func _select_menu(id):
 	get_child(startMenuId).visible = false;
@@ -119,6 +89,7 @@ func _select_menu(id):
 	get_child(optionsMenuId).visible = false;
 	get_child(difficultyMenuId).visible = false;
 	get_child(mapMenu3Id).visible = false;
+	get_child(leaderboardMenuId).visible = false;
 	get_child(id).visible = true;
 	activeMenuId = id;
 	pass

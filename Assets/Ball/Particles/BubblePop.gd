@@ -9,4 +9,3 @@ func _physics_process(delta):
 	else:
 		x = true;
 	pass
-	

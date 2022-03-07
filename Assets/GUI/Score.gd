@@ -9,4 +9,4 @@ func _ready():
 func _physics_process(delta):
 	if global.score != score:
 		score = global.score;
-		text = str(score);
+		text = "Score: " + str(score);

@@ -1,10 +1,10 @@
 extends Sprite
 class_name SpawnPoint
 
-export(int) var easy_Balls_Spawn = 0;
-export(int) var normal_Balls_Spawn = 0;
-export(int) var hell_Balls_Spawn = 0;
-export(bool) var random_velocity = true;
-export(bool) var random_angle = true;
-export(float) var init_vel = 0;
-export(float) var init_angle = 0;
+export(int) var easyBallsSpawn = 0;
+export(int) var normalBalls_Spawn = 0;
+export(int) var hardBalls_Spawn = 0;
+export(bool) var randomVelocity = true;
+export(bool) var randomAngle = true;
+export(float) var initVel = 0;
+export(float) var initAngle = 0;

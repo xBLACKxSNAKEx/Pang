@@ -5,13 +5,13 @@ export(int) var d = 4
 const sizes = [0.49, 0.7, 1, 1.3];
 export(float) var multiplier = 2;
 
-onready var unbreakable_time = OS.get_ticks_msec()
+onready var unbreakableTime = OS.get_ticks_msec()
 
-var max_y_vel = 0;
+var maxYVel = 0;
 
-export(float) var min_velocity_y = 90;
-export(float) var max_velocity_y = 125;
-export(float) var max_velocity_x = 200;
+export(float) var minVelocityY = 90;
+export(float) var maxVelocityY = 125;
+export(float) var maxVelocityX = 200;
 
 var rng = RandomNumberGenerator.new();
 
@@ -31,9 +31,6 @@ func set_Size():
 var s = 1
 
 func _physics_process(delta):
-	if OS.is_debug_build() and Input.is_key_pressed(KEY_Y):
-		gravity_scale = 0;
-		linear_velocity = Vector2(0,0);
 	if global.sizeUp > 0 or s != 1:
 		if global.sizeUp > 0:
 			s += delta * 0.5;
@@ -49,26 +46,24 @@ func _physics_process(delta):
 	else:
 		set_Size()
 	var v = sqrt(linear_velocity.x*linear_velocity.x + linear_velocity.y*linear_velocity.y)
-	if v > sqrt(max_velocity_y * max_velocity_y + max_velocity_x * max_velocity_x):
+	if v > sqrt(maxVelocityY * maxVelocityY + maxVelocityX * maxVelocityX):
 		var normalized = Vector2(linear_velocity.x / v, linear_velocity.y/v)
 		apply_central_impulse(-normalized * 5 * d)
-	if linear_velocity.x > max_velocity_x * d * d:
+	if linear_velocity.x > maxVelocityX * d * d:
 		linear_damp = 1/4*d;
-	elif linear_velocity.x < -max_velocity_x * d * d:
+	elif linear_velocity.x < -maxVelocityX * d * d:
 		linear_damp = 1/4*d;
 	else:
 		linear_damp = 0;
 	
 	if linear_velocity.y > -2 and linear_velocity.y < 2:
-		if max_y_vel != 0:
-			if max_y_vel < min_velocity_y + 25 * (d - 1):
+		if maxYVel != 0:
+			if maxYVel < minVelocityY + 25 * (d - 1):
 				apply_central_impulse(Vector2(0, 20) * d)
-			max_y_vel = 0;
+			maxYVel = 0;
 	else:
-		if linear_velocity.y > max_velocity_y + 25 * (d - 1):
-			apply_central_impulse(-Vector2(0, linear_velocity.y))
-		if linear_velocity.y > max_y_vel:
-			max_y_vel = linear_velocity.y;
+		if linear_velocity.y > maxYVel:
+			maxYVel = linear_velocity.y;
 	if d <= 0:
 		if global.ballsList.find(self) != -1:
 			global.ballsList.remove(global.ballsList.find(self));
@@ -86,13 +81,15 @@ func pop():
 	particles.global_position = global_position;
 	get_parent().add_child(particles)
 	particles.emitting = true;
-	if rng.randf_range(0, 100) < global.powerUpChance:
-		var powerUpResource = "res://Assets/PowerUps/PowerUp.tscn";
-		var powerUpLoad = load(powerUpResource)
-		var powerUp = powerUpLoad.instance()
-		get_parent().add_child(powerUp)
-		powerUp.global_position = global_position;
-		powerUp.setType(rng.randi_range(0,2));
+	if not global.mode == 1:
+		if rng.randf_range(0, 100) < global.powerUpChance:
+			var powerUpResource = "res://Assets/PowerUps/PowerUp.tscn";
+			var powerUpLoad = load(powerUpResource)
+			var powerUp = powerUpLoad.instance()
+			get_parent().get_node("PowerUps").add_child(powerUp)
+			powerUp.global_position = global_position;
+			powerUp.setType(rng.randi_range(0,2));
+			global.powerUps.push_back(powerUp);
 	particles.emitting = true;
 	if d <= 1:
 		if global.ballsList.find(self) != -1:
@@ -104,8 +101,8 @@ func pop():
 	pass
 
 func hit():
-	if OS.get_ticks_msec() - unbreakable_time > 150:
-		unbreakable_time = OS.get_ticks_msec();
+	if OS.get_ticks_msec() - unbreakableTime > 150:
+		unbreakableTime = OS.get_ticks_msec();
 		split();
 	pass
 
@@ -119,7 +116,7 @@ func split():
 	pop();
 	d-=1;
 	dup.d = d;
-	dup.unbreakable_time = OS.get_ticks_msec();
+	dup.unbreakableTime = OS.get_ticks_msec();
 	get_parent().add_child(dup)
 	global.ballsList.push_back(dup)
 	apply_impulse(Vector2(0,0), Vector2(100, 0))
