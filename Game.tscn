@@ -568,7 +568,7 @@ margin_bottom = 7.0
 rect_scale = Vector2( 1.514, 1.354 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_styles/normal = SubResource( 6 )
-text = "Damianyuytr"
+placeholder_text = "Your name"
 __meta__ = {
 "_edit_use_anchors_": false
 }

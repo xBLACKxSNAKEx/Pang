@@ -16,6 +16,8 @@ func _ready():
 	global.scan_saves();
 	global.ballsList.clear();
 	global.powerUps.clear();
+	global.score = 0;
+	global.finalScore = 0;
 	Engine.time_scale = 1;
 	get_tree().paused = false;
 	_select_menu(startMenuId);
